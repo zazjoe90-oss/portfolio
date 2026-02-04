@@ -1,19 +1,23 @@
 {
   "name": "digital-7key-portfolio",
+  "private": true,
   "version": "1.0.0",
-  "description": "Professional Web Development Portfolio for z.youssef",
-  "main": "index.html",
+  "type": "module",
   "scripts": {
-    "start": "npx serve .",
-    "build": "echo 'No build step required for ESM-native project' && exit 0"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": [
-    "portfolio",
-    "web-developer",
-    "wordpress",
-    "react",
-    "freelance"
-  ],
-  "author": "z.youssef",
-  "license": "MIT"
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "lucide-react": "^0.475.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
+  }
 }

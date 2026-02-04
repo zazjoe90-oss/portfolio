@@ -7,6 +7,9 @@ interface ProjectsProps {
 }
 
 const Projects: React.FC<ProjectsProps> = ({ setView }) => {
+  // Only show the first 4 projects as a preview
+  const previewProjects = PROJECTS.slice(0, 4);
+
   return (
     <section id="projects" className="mb-24 scroll-mt-24">
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -25,12 +28,12 @@ const Projects: React.FC<ProjectsProps> = ({ setView }) => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {PROJECTS.map((project, index) => (
+        {previewProjects.map((project, index) => (
           <div 
             key={project.id} 
-            className={`group relative rounded-[2.5rem] bg-white shadow-2xl overflow-hidden border border-slate-100 flex flex-col ${index === 0 && PROJECTS.length % 2 !== 0 ? 'lg:col-span-2' : ''}`}
+            className={`group relative rounded-[2.5rem] bg-white shadow-2xl overflow-hidden border border-slate-100 flex flex-col ${index === 0 && previewProjects.length % 2 !== 0 ? 'lg:col-span-2' : ''}`}
           >
-            <div className={`relative ${index === 0 && PROJECTS.length % 2 !== 0 ? 'h-[400px] md:h-[500px]' : 'h-[320px] md:h-[400px]'} overflow-hidden bg-slate-100`}>
+            <div className={`relative ${index === 0 && previewProjects.length % 2 !== 0 ? 'h-[400px] md:h-[500px]' : 'h-[320px] md:h-[400px]'} overflow-hidden bg-slate-100`}>
               <img 
                 src={project.imageUrl} 
                 alt={project.name} 
@@ -48,7 +51,7 @@ const Projects: React.FC<ProjectsProps> = ({ setView }) => {
                     </span>
                   ))}
                 </div>
-                {project.link && (
+                {project.link && project.link !== '#' && (
                   <a 
                     href={project.link} 
                     target="_blank"
@@ -58,6 +61,12 @@ const Projects: React.FC<ProjectsProps> = ({ setView }) => {
                     Visit Project <ExternalLink className="w-4 h-4" />
                   </a>
                 )}
+                <button 
+                  onClick={() => setView?.('projects')}
+                  className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 w-fit translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-200 shadow-xl"
+                >
+                  View Details <ArrowUpRight className="w-4 h-4" />
+                </button>
               </div>
               
               <div className="absolute top-6 left-6 flex gap-2">
@@ -69,28 +78,20 @@ const Projects: React.FC<ProjectsProps> = ({ setView }) => {
 
             <div className="p-8 md:p-10 flex-grow flex flex-col justify-between">
               <div>
-                <h3 className="text-3xl font-extrabold text-slate-900 mb-3 tracking-tight group-hover:text-blue-600 transition-colors">
+                <h3 className="text-3xl font-extrabold text-slate-900 mb-3 tracking-tight group-hover:text-blue-600 transition-colors text-balance">
                   {project.name}
                 </h3>
                 <p className="text-slate-500 text-lg line-clamp-2 leading-relaxed font-light">
-                  {project.id === 'cheaptic' 
-                    ? 'A comprehensive travel search engine providing the best deals for flights and hotels worldwide.' 
-                    : `A high-converting web solution tailored for the specific needs of ${project.name.split(' ')[0]}. Optimized for all devices.`
-                  }
+                  {project.shortDescription}
                 </p>
               </div>
               
-              <div className="mt-8 flex items-center justify-between">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3].map(i => (
-                    <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-slate-200" title="Team member placeholder"></div>
-                  ))}
-                  <div className="w-8 h-8 rounded-full border-2 border-white bg-blue-50 flex items-center justify-center text-[10px] font-bold text-blue-600">
-                    +4
-                  </div>
-                </div>
+              <div className="mt-8 flex items-center justify-between border-t border-slate-50 pt-6">
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">
                   Completed in 2024
+                </span>
+                <span className="text-xs font-bold text-blue-600 uppercase tracking-widest">
+                  Ready to scale
                 </span>
               </div>
             </div>

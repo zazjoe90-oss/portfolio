@@ -1,6 +1,6 @@
 import React from 'react';
 import { DEVELOPER_NAME } from '../constants';
-import { ChevronRight, ExternalLink } from 'lucide-react';
+import { ChevronRight, ExternalLink, Star } from 'lucide-react';
 
 interface HeroProps {
   setView?: (view: 'home' | 'services' | 'projects') => void;
@@ -15,9 +15,15 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
       
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
         <div className="lg:col-span-7 space-y-8 animate-in fade-in slide-in-from-left duration-1000">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs md:text-sm font-semibold tracking-wide uppercase">
-            <span className="flex h-2 w-2 rounded-full bg-green-400 animate-pulse"></span>
-            Ready for new projects
+          <div className="flex flex-wrap gap-3">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs md:text-sm font-semibold tracking-wide uppercase">
+              <span className="flex h-2 w-2 rounded-full bg-green-400 animate-pulse"></span>
+              Ready for new projects
+            </div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs md:text-sm font-semibold tracking-wide uppercase">
+              <Star className="w-3 h-3 text-yellow-400 fill-current" />
+              10+ Years Experience
+            </div>
           </div>
           
           <div className="space-y-4">
@@ -25,7 +31,7 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
               Crafting <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">Digital Excellence</span>
             </h1>
             <p className="text-xl md:text-2xl text-blue-50/80 max-w-2xl leading-relaxed font-light">
-              Hi, I'm <span className="font-bold text-white uppercase tracking-wider">{DEVELOPER_NAME}</span>. I build high-performance WordPress & custom websites that scale with your business.
+              Hi, I'm <span className="font-bold text-white uppercase tracking-wider">{DEVELOPER_NAME}</span>. With <span className="text-white font-bold">10+ years</span> of digital expertise, I build high-performance WordPress & custom websites that scale with your business.
             </p>
           </div>
 

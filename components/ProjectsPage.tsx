@@ -18,10 +18,13 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ setView }) => {
     return PROJECTS.filter(project => {
       const matchesFilter = activeFilter === 'All' || 
                            project.techStack.some(tech => tech.toLowerCase().includes(activeFilter.toLowerCase())) ||
-                           project.type.toLowerCase().includes(activeFilter.toLowerCase());
+                           project.type.toLowerCase().includes(activeFilter.toLowerCase()) ||
+                           (activeFilter === 'Corporate' && project.type.includes('Corporate')) ||
+                           (activeFilter === 'App' && (project.type.includes('App') || project.type.includes('SaaS')));
       
       const matchesSearch = project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           project.techStack.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
+                           project.techStack.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase())) ||
+                           project.type.toLowerCase().includes(searchQuery.toLowerCase());
       
       return matchesFilter && matchesSearch;
     });
@@ -136,15 +139,13 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ setView }) => {
                     )}
                   </div>
                   <p className="text-slate-500 text-sm leading-relaxed mb-8 line-clamp-2">
-                    {project.id === 'cheaptic' 
-                      ? 'High-performance travel comparison engine with real-time data sync and advanced search filters.' 
-                      : `Expertly crafted digital solution for ${project.name} delivering measurable business results.`}
+                    {project.shortDescription}
                   </p>
                   
                   <div className="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between">
                     <span className="flex items-center gap-1 text-emerald-500 font-bold text-xs">
                       <CheckCircle className="w-3 h-3 fill-current" />
-                      Live Project
+                      Verified Quality
                     </span>
                     <button 
                       className="text-blue-600 font-black text-xs uppercase tracking-widest group-hover:translate-x-1 transition-transform inline-flex items-center gap-1"
@@ -209,9 +210,7 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ setView }) => {
                       Project Overview
                     </h4>
                     <p className="text-slate-600 leading-relaxed">
-                      {selectedProject.id === 'cheaptic' 
-                        ? 'Cheaptic is a sophisticated travel metadata search engine. We engineered a custom algorithm to fetch and compare prices from over 100+ airlines and hotel providers in real-time, focusing on sub-second response times and a conversion-optimized user interface.' 
-                        : `For ${selectedProject.name}, we focused on delivering a ${selectedProject.type.toLowerCase()} that prioritizes user experience and SEO performance. The project involved deep integration of modern web standards and custom feature sets unique to their business vertical.`}
+                      {selectedProject.description}
                     </p>
                   </div>
 
@@ -230,16 +229,16 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ setView }) => {
                     <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100">
                       <div className="flex items-center gap-2 text-emerald-600 mb-1">
                         <Clock className="w-4 h-4" />
-                        <span className="text-[10px] font-bold uppercase tracking-widest">Timeline</span>
+                        <span className="text-[10px] font-bold uppercase tracking-widest">Status</span>
                       </div>
-                      <span className="text-sm font-bold text-slate-700 block mt-2">8 Weeks (Launch: 2024)</span>
+                      <span className="text-sm font-bold text-slate-700 block mt-2">Live (Launched 2024)</span>
                     </div>
                   </div>
 
                   <div>
-                    <h4 className="text-slate-900 font-bold mb-4">Core Deliverables</h4>
+                    <h4 className="text-slate-900 font-bold mb-4">Core Features</h4>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {['Responsive UI', 'SEO Infrastructure', 'Custom Backend', 'Speed Optimization', 'Secure Checkout', 'Analytics Setup'].map(item => (
+                      {['Responsive UI', 'SEO Infrastructure', 'Custom Integration', 'Speed Optimized', 'Secure Architecture', 'Advanced UX'].map(item => (
                         <li key={item} className="flex items-center gap-2 text-sm text-slate-600">
                           <CheckCircle className="w-4 h-4 text-emerald-500" />
                           {item}
@@ -249,7 +248,7 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ setView }) => {
                   </div>
 
                   <div className="pt-8 border-t border-slate-100 flex flex-col sm:flex-row gap-4">
-                    {selectedProject.link && (
+                    {selectedProject.link && selectedProject.link !== '#' && (
                       <a 
                         href={selectedProject.link} 
                         target="_blank" 

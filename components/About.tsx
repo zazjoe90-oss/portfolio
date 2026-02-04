@@ -1,6 +1,6 @@
 import React from 'react';
-import { Plus, User, Target, Award } from 'lucide-react';
-import { DEVELOPER_NAME, CONTACT_INFO } from '../constants';
+import { Plus, User, Target, Award, Users, Clock } from 'lucide-react';
+import { DEVELOPER_NAME, CONTACT_INFO, TEAM_MEMBERS } from '../constants';
 
 const About: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ const About: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-center gap-4 mb-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-50 text-blue-600 text-sm font-bold uppercase tracking-wider">
               <User className="w-4 h-4" />
-              About Me
+              About Us
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
               Meet {DEVELOPER_NAME}
@@ -22,15 +22,30 @@ const About: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-8 space-y-8">
               <p className="text-2xl md:text-3xl text-slate-800 font-medium leading-tight text-balance">
-                I help business owners build <span className="text-blue-600">revenue-driving</span> digital experiences through expert development.
+                We help business owners build <span className="text-blue-600">revenue-driving</span> digital experiences through <span className="font-bold">10+ years</span> of expert development.
               </p>
               <div className="space-y-6 text-slate-600 leading-relaxed text-lg max-w-3xl">
                 <p>
-                  With years of experience in both WordPress and custom development, I don't just build sites; I build tools that grow businesses. My focus is on <strong>speed, conversion, and scalability</strong>.
+                  At <strong>{DEVELOPER_NAME}</strong>, with over a decade of professional experience, we don't just build sites; we build tools that grow businesses. Our focus is on <strong>speed, conversion, and scalability</strong>.
                 </p>
-                <p>
-                  I believe a website should be your hardest-working employee. That's why I prioritize technical SEO and mobile performance in every project I undertake.
-                </p>
+                
+                {/* Team Personnel Section */}
+                <div className="pt-8 pb-4">
+                  <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                    <Users className="w-5 h-5 text-blue-600" />
+                    Expert Minds Behind the Code
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {TEAM_MEMBERS.map((member) => (
+                      <div key={member.name} className="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300">
+                        <div>
+                          <h4 className="font-bold text-slate-900 text-lg leading-tight">{member.name}</h4>
+                          <p className="text-sm text-blue-600 font-medium">{member.role}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6">
@@ -59,12 +74,19 @@ const About: React.FC = () => {
               <div className="bg-slate-50 rounded-3xl p-8 border border-slate-200/50 space-y-8">
                  <div className="space-y-6">
                     <div className="pb-4 border-b border-slate-200">
+                      <span className="text-slate-400 font-bold uppercase tracking-widest text-[10px] block mb-2 text-emerald-600">Experience</span>
+                      <span className="text-slate-900 font-bold text-lg flex items-center gap-2">
+                        <Clock className="w-5 h-5 text-emerald-500" />
+                        10+ Years Excellence
+                      </span>
+                    </div>
+                    <div className="pb-4 border-b border-slate-200">
                       <span className="text-slate-400 font-bold uppercase tracking-widest text-[10px] block mb-2">Location</span>
                       <span className="text-slate-900 font-bold text-lg">Morocco (Available Globally)</span>
                     </div>
                     <div className="pb-4 border-b border-slate-200">
-                      <span className="text-slate-400 font-bold uppercase tracking-widest text-[10px] block mb-2">Years of Experience</span>
-                      <span className="text-slate-900 font-bold text-lg">5+ Years Industry Exp</span>
+                      <span className="text-slate-400 font-bold uppercase tracking-widest text-[10px] block mb-2">Team Expertise</span>
+                      <span className="text-slate-900 font-bold text-lg">Full-Stack & CMS Experts</span>
                     </div>
                     <div className="pb-4">
                       <span className="text-slate-400 font-bold uppercase tracking-widest text-[10px] block mb-2">Preferred Tech</span>
@@ -81,7 +103,7 @@ const About: React.FC = () => {
                    rel="noopener noreferrer"
                    className="block w-full text-center bg-slate-900 text-white py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-xl shadow-slate-200"
                  >
-                   Contact Now
+                   Hire Our Team
                  </a>
               </div>
             </div>

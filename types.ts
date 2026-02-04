@@ -7,6 +7,8 @@ export interface Project {
   type: string;
   techStack: string[];
   imageUrl: string;
+  description: string;
+  shortDescription: string;
   link?: string;
 }
 
@@ -19,4 +21,9 @@ export interface Skill {
 export interface Service {
   title: string;
   icon: React.ReactNode;
+}
+
+export interface TeamMember {
+  name: string;
+  role: string;
 }

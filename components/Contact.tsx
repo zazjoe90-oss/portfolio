@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, Linkedin, ArrowRight, MessageCircle } from 'lucide-react';
+import { Mail, Phone, ArrowRight, MessageCircle } from 'lucide-react';
 import { CONTACT_INFO, DEVELOPER_NAME } from '../constants';
 
 const Contact: React.FC = () => {
@@ -36,7 +36,7 @@ const Contact: React.FC = () => {
         
         <div className="h-px bg-gradient-to-r from-transparent via-slate-800 to-transparent w-full mb-16"></div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
           <a href={`mailto:${CONTACT_INFO.email}`} className="bg-white/5 p-8 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors group">
             <Mail className="w-8 h-8 text-blue-400 mb-4 group-hover:scale-110 transition-transform" />
             <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Email Me</h4>
@@ -46,11 +46,6 @@ const Contact: React.FC = () => {
             <Phone className="w-8 h-8 text-emerald-400 mb-4 group-hover:scale-110 transition-transform" />
             <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">WhatsApp</h4>
             <p className="text-lg font-bold">{CONTACT_INFO.whatsapp}</p>
-          </a>
-          <a href={`https://${CONTACT_INFO.linkedin}`} target="_blank" rel="noopener noreferrer" className="bg-white/5 p-8 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors group">
-            <Linkedin className="w-8 h-8 text-blue-500 mb-4 group-hover:scale-110 transition-transform" />
-            <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">LinkedIn</h4>
-            <p className="text-lg font-bold truncate">z.youssef profile</p>
           </a>
         </div>
 

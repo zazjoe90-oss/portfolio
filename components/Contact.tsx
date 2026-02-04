@@ -1,0 +1,80 @@
+import React from 'react';
+import { Mail, Phone, Linkedin, ArrowRight, MessageCircle } from 'lucide-react';
+import { CONTACT_INFO, DEVELOPER_NAME } from '../constants';
+
+const Contact: React.FC = () => {
+  return (
+    <footer id="contact" className="bg-[#0F172A] pt-24 pb-12 px-6 text-white relative overflow-hidden">
+      {/* Decorative Blur */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-blue-600/20 blur-[120px] pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="flex flex-col items-center text-center space-y-8 mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-blue-400 text-xs font-bold uppercase tracking-widest">
+            <MessageCircle className="w-4 h-4" />
+            Let's talk
+          </div>
+          <h2 className="text-5xl md:text-7xl font-extrabold tracking-tighter max-w-4xl leading-[1.1]">
+            Let’s build something <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">extraordinary</span> together.
+          </h2>
+          <p className="text-slate-400 text-xl md:text-2xl max-w-2xl font-light leading-relaxed">
+            Ready to scale your business? Drop me a message and let's discuss your vision.
+          </p>
+          
+          <div className="pt-6">
+            <a 
+              href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\+/g, '')}`}
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group bg-blue-600 hover:bg-blue-500 text-white px-12 py-5 rounded-2xl font-bold text-xl shadow-2xl shadow-blue-900/40 transition-all flex items-center gap-3 active:scale-95"
+            >
+              Get in Touch
+              <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+        </div>
+        
+        <div className="h-px bg-gradient-to-r from-transparent via-slate-800 to-transparent w-full mb-16"></div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+          <a href={`mailto:${CONTACT_INFO.email}`} className="bg-white/5 p-8 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors group">
+            <Mail className="w-8 h-8 text-blue-400 mb-4 group-hover:scale-110 transition-transform" />
+            <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Email Me</h4>
+            <p className="text-lg font-bold truncate">{CONTACT_INFO.email}</p>
+          </a>
+          <a href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\+/g, '')}`} target="_blank" rel="noopener noreferrer" className="bg-white/5 p-8 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors group">
+            <Phone className="w-8 h-8 text-emerald-400 mb-4 group-hover:scale-110 transition-transform" />
+            <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">WhatsApp</h4>
+            <p className="text-lg font-bold">{CONTACT_INFO.whatsapp}</p>
+          </a>
+          <a href={`https://${CONTACT_INFO.linkedin}`} target="_blank" rel="noopener noreferrer" className="bg-white/5 p-8 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors group">
+            <Linkedin className="w-8 h-8 text-blue-500 mb-4 group-hover:scale-110 transition-transform" />
+            <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">LinkedIn</h4>
+            <p className="text-lg font-bold truncate">z.youssef profile</p>
+          </a>
+        </div>
+
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-12 border-t border-slate-800/50">
+          <div className="flex items-center gap-1">
+             <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">7</div>
+             <span className="text-xl font-bold tracking-tighter">Key</span>
+             <span className="text-slate-600 ml-2 border-l border-slate-700 pl-2">by {DEVELOPER_NAME}</span>
+          </div>
+          
+          <p className="text-slate-500 text-xs">
+            &copy; {new Date().getFullYear()} digital 7Key. All rights reserved. Built for performance.
+          </p>
+
+          <div className="flex gap-4">
+             {/* Mock social links */}
+             {['Twitter', 'GitHub', 'Behance'].map(social => (
+               <span key={social} className="text-[10px] font-bold uppercase tracking-widest text-slate-600 cursor-pointer hover:text-white transition-colors">{social}</span>
+             ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Contact;

@@ -24,7 +24,7 @@ const App: React.FC = () => {
       <main className="flex-grow">
         {view === 'home' && (
           <>
-            <Hero />
+            <Hero setView={setView} />
             <div className="max-w-7xl mx-auto px-6 -mt-24 md:-mt-32 relative z-10">
               <About />
               <Skills />

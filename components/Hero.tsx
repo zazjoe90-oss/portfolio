@@ -2,7 +2,11 @@ import React from 'react';
 import { DEVELOPER_NAME } from '../constants';
 import { ChevronRight, ExternalLink } from 'lucide-react';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  setView?: (view: 'home' | 'services' | 'projects') => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ setView }) => {
   return (
     <section className="hero-gradient pt-32 md:pt-48 pb-64 px-6 text-white overflow-hidden relative">
       <div className="absolute inset-0 opacity-20 pointer-events-none">
@@ -26,10 +30,13 @@ const Hero: React.FC = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <a href="#projects" className="fluent-transition bg-white text-blue-700 px-8 py-4 rounded-2xl font-bold shadow-xl hover:shadow-2xl hover:bg-blue-50 flex items-center justify-center gap-2 group">
+            <button 
+              onClick={() => setView?.('projects')}
+              className="fluent-transition bg-white text-blue-700 px-8 py-4 rounded-2xl font-bold shadow-xl hover:shadow-2xl hover:bg-blue-50 flex items-center justify-center gap-2 group"
+            >
               View Projects
               <ChevronRight className="w-5 h-5 group-hover:translate-x-1 fluent-transition" />
-            </a>
+            </button>
             <a href="#contact" className="fluent-transition bg-transparent border-2 border-white/30 backdrop-blur-sm text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/10 flex items-center justify-center gap-2">
               Contact Me
               <ExternalLink className="w-4 h-4 opacity-70" />

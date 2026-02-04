@@ -3,11 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>z.youssef - digital 7Key Web Development</title>
+    <title>z.youssef | digital 7Key - Web Developer & WordPress Expert</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Professional web development services by z.youssef. Specializing in WordPress custom themes, Elementor, React applications, and high-performance business websites." />
+    <meta name="keywords" content="web developer, wordpress expert, react developer, elementor specialist, business websites, portfolio, z.youssef, digital 7key" />
+    <meta name="author" content="z.youssef" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://z-youssef.vercel.app/" />
+    <meta property="og:title" content="z.youssef | digital 7Key - Web Developer" />
+    <meta property="og:description" content="Building fast, modern, and scalable websites for businesses. View my portfolio of WordPress and Custom Web projects." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="z.youssef | digital 7Key - Web Developer" />
+    <meta property="twitter:description" content="Building fast, modern, and scalable websites for businesses. View my portfolio." />
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
       :root {
         --primary: #2563EB;
@@ -49,19 +69,35 @@
       .text-balance {
         text-wrap: balance;
       }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #2563eb;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #1d4ed8;
+      }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4"
-  }
-}
-</script>
-</head>
+    
+    <script type="importmap">
+    {
+      "imports": {
+        "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+        "react/": "https://esm.sh/react@^19.2.4/",
+        "react": "https://esm.sh/react@^19.2.4"
+      }
+    }
+    </script>
+  </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
   </body>
 </html>

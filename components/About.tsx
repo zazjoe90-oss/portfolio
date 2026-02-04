@@ -1,6 +1,6 @@
 import React from 'react';
 import { Plus, User, Target, Award } from 'lucide-react';
-import { DEVELOPER_NAME } from '../constants';
+import { DEVELOPER_NAME, CONTACT_INFO } from '../constants';
 
 const About: React.FC = () => {
   return (
@@ -75,7 +75,12 @@ const About: React.FC = () => {
                       </div>
                     </div>
                  </div>
-                 <a href="#contact" className="block w-full text-center bg-slate-900 text-white py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-xl shadow-slate-200">
+                 <a 
+                   href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\+/g, '')}`}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="block w-full text-center bg-slate-900 text-white py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-xl shadow-slate-200"
+                 >
                    Contact Now
                  </a>
               </div>

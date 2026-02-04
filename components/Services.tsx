@@ -1,7 +1,12 @@
 import React from 'react';
 import { SERVICES } from '../constants';
+import { ArrowRight } from 'lucide-react';
 
-const Services: React.FC = () => {
+interface ServicesProps {
+  setView?: (view: 'home' | 'services') => void;
+}
+
+const Services: React.FC<ServicesProps> = ({ setView }) => {
   return (
     <section id="services" className="mb-24 scroll-mt-24">
       <div className="text-center space-y-4 mb-16">
@@ -34,6 +39,18 @@ const Services: React.FC = () => {
           </div>
         ))}
       </div>
+
+      {setView && (
+        <div className="mt-12 text-center">
+          <button 
+            onClick={() => setView('services')}
+            className="inline-flex items-center gap-2 text-blue-600 font-bold hover:gap-3 transition-all text-lg group"
+          >
+            Explore all services & get a quote 
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
+      )}
     </section>
   );
 };

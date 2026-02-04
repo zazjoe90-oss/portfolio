@@ -2,7 +2,11 @@ import React from 'react';
 import { PROJECTS } from '../constants';
 import { ExternalLink, ArrowUpRight } from 'lucide-react';
 
-const Projects: React.FC = () => {
+interface ProjectsProps {
+  setView?: (view: 'home' | 'services' | 'projects') => void;
+}
+
+const Projects: React.FC<ProjectsProps> = ({ setView }) => {
   return (
     <section id="projects" className="mb-24 scroll-mt-24">
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -12,9 +16,12 @@ const Projects: React.FC = () => {
             Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Creations</span>
           </h2>
         </div>
-        <a href="#" className="hidden sm:flex items-center gap-2 text-slate-900 font-bold px-6 py-3 rounded-xl border border-slate-200 hover:bg-slate-50 transition-all">
-          View Archive <ArrowUpRight className="w-4 h-4" />
-        </a>
+        <button 
+          onClick={() => setView?.('projects')}
+          className="hidden sm:flex items-center gap-2 text-slate-900 font-bold px-6 py-3 rounded-xl border border-slate-200 hover:bg-slate-50 transition-all"
+        >
+          View Full Portfolio <ArrowUpRight className="w-4 h-4" />
+        </button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

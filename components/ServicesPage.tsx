@@ -10,17 +10,42 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ setView }) => {
   const [formState, setFormState] = useState({ name: '', email: '', service: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
+    setError(null);
+
+    try {
+      // Using FormSubmit.co AJAX API to send the email to the client's address
+      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_INFO.email}`, {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          Name: formState.name,
+          Email: formState.email,
+          Service: formState.service,
+          Message: formState.message,
+          _subject: `New Quote Request from ${formState.name} - 7Key Portfolio`
+        })
+      });
+
+      if (response.ok) {
+        setIsSent(true);
+        setFormState({ name: '', email: '', service: '', message: '' });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (err) {
+      console.error("Submission error:", err);
+      setError("There was an error sending your message. Please try again or use WhatsApp.");
+    } finally {
       setIsSubmitting(false);
-      setIsSent(true);
-      setFormState({ name: '', email: '', service: '', message: '' });
-      // In a real app, you would send this to your backend or WhatsApp
-    }, 1500);
+    }
   };
 
   const detailedServices = [
@@ -106,7 +131,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ setView }) => {
                       <CheckCircle2 className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-xl font-bold text-emerald-400">Message Sent!</h3>
-                    <p className="text-slate-300 text-sm">Thank you for reaching out. I'll review your project details and contact you shortly.</p>
+                    <p className="text-slate-300 text-sm">Thank you for reaching out. Your inquiry has been sent to our email. We will contact you shortly.</p>
                     <button 
                       onClick={() => setIsSent(false)}
                       className="text-white underline text-sm pt-4 hover:text-emerald-400"
@@ -116,11 +141,17 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ setView }) => {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
+                    {error && (
+                      <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-xs font-medium">
+                        {error}
+                      </div>
+                    )}
                     <div>
                       <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2 ml-1">Full Name</label>
                       <input 
                         required
                         type="text" 
+                        name="name"
                         value={formState.name}
                         onChange={(e) => setFormState({...formState, name: e.target.value})}
                         placeholder="John Doe"
@@ -132,6 +163,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ setView }) => {
                       <input 
                         required
                         type="email" 
+                        name="email"
                         value={formState.email}
                         onChange={(e) => setFormState({...formState, email: e.target.value})}
                         placeholder="john@company.com"
@@ -142,6 +174,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ setView }) => {
                       <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2 ml-1">Service Required</label>
                       <select 
                         required
+                        name="service"
                         value={formState.service}
                         onChange={(e) => setFormState({...formState, service: e.target.value})}
                         className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all appearance-none cursor-pointer"
@@ -156,6 +189,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ setView }) => {
                       <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2 ml-1">Project Brief</label>
                       <textarea 
                         required
+                        name="message"
                         rows={4}
                         value={formState.message}
                         onChange={(e) => setFormState({...formState, message: e.target.value})}

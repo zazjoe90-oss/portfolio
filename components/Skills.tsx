@@ -1,6 +1,5 @@
 import React from 'react';
 import { SKILLS } from '../constants';
-import { ChevronRight } from 'lucide-react';
 
 const Skills: React.FC = () => {
   return (
@@ -24,19 +23,14 @@ const Skills: React.FC = () => {
               {skill.icon}
             </div>
             <h3 className="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight">{skill.title}</h3>
-            <ul className="space-y-4 mb-10">
+            <ul className="space-y-4 font-medium">
               {skill.items.map((item, i) => (
-                <li key={i} className="text-slate-600 flex items-center gap-3 font-medium">
+                <li key={i} className="text-slate-600 flex items-center gap-3">
                   <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
                   {item}
                 </li>
               ))}
             </ul>
-            <div className="pt-6 border-t border-slate-50">
-               <button className="flex items-center gap-2 text-blue-600 font-bold text-sm hover:gap-3 transition-all">
-                 Explore expertise <ChevronRight className="w-4 h-4" />
-               </button>
-            </div>
           </div>
         ))}
       </div>
